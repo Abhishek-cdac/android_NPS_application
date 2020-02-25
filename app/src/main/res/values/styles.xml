@@ -1,0 +1,58 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:colorAccent">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/colorPrimaryDark</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+    <style name="MatchSpinnerStyle" parent="android:style/Widget.ListView.DropDown">
+
+        <item name="android:dividerHeight">0.5dp</item>
+    </style>
+    <style name="MatchSpinnerTheme" parent="AppTheme">
+        <item name="dropDownListViewStyle">@style/MatchSpinnerStyle</item>
+    </style>
+    <style name="AppFullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="error_appearance" parent="@android:style/TextAppearance">
+
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance44">
+        <item name="android:textColor">#FF0000</item>
+    </style>
+
+
+</resources>
+
+

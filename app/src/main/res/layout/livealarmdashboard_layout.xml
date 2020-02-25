@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/grey">
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:visibility="visible"
+            app:popupTheme="@style/AppTheme.PopupOverlay" android:layout_marginStart="-16dp"
+            >
+        <RelativeLayout
+                android:id="@+id/livealarm_back_layout"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:visibility="visible">
+
+            <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/back_icon"/>
+        </RelativeLayout>
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textStyle="bold"
+                android:text="Live Alarm"/>
+
+
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbar">
+    <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/_20sdp"
+            android:layout_below="@id/toolbar"
+            android:orientation="vertical">
+       <androidx.cardview.widget.CardView
+               android:layout_height="@dimen/_80sdp"
+               android:layout_width="match_parent"
+               android:layout_marginTop="15dp"
+               android:background="@color/white">
+        <RelativeLayout
+                android:id="@+id/total_layout"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="match_parent"
+                >
+
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_14sdp"
+                    android:text="Total Alarm"/>
+
+            <TextView
+                    android:id="@+id/total_count"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_25sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_50sdp"
+                    android:text="2260"/>
+
+            <ImageView
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/purple_alarm"/>
+        </RelativeLayout>
+       </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+            <RelativeLayout
+                    android:id="@+id/critical_alarm"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/toolbar">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Critical Alarm"/>
+
+                <TextView
+                        android:id="@+id/critical_alarm_value"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/pink"
+                        android:textSize="@dimen/_25sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_50sdp"
+                        android:text="2260"/>
+
+                <ImageView
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/criticalalarm"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+            <RelativeLayout
+                    android:id="@+id/major_alarm"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/toolbar">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Major Alarm"/>
+
+                <TextView
+                        android:id="@+id/major_alarm_value"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/orange"
+                        android:textSize="@dimen/_25sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_50sdp"
+                        android:text="2260"/>
+
+                <ImageView
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/majoralarm"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+            <RelativeLayout
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/toolbar">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/yellow"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Minar Alarm"/>
+
+                <TextView
+                        android:id="@+id/Minar"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/yellow"
+                        android:textSize="@dimen/_25sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_50sdp"
+                        android:text="2260"/>
+
+                <ImageView
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/minaralarm"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white">
+            <RelativeLayout
+
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/toolbar">
+
+                <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/light_green"
+                        android:textSize="@dimen/_14sdp"
+                        android:text="Cleared Alarm"/>
+
+                <TextView
+                        android:id="@+id/cleared_alarm_value"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/light_green"
+                        android:textSize="@dimen/_25sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_50sdp"
+                        android:text="2260"/>
+
+                <ImageView
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/clearedalarm"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/app_bar_main"
+        tools:context=".MainActivity">
+
+
+    <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="wrap_content"
+                android:backgroundTint="#B03A6C"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/btn_border_background"
+        >
+            <TextView
+                    android:id="@+id/critical_status"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Alarm Critical status"/>
+            <TextView
+                    android:id="@+id/critical_status_count"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Critical Alarm Count"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_below="@id/critical_status"/>
+            <TextView
+                    android:id="@+id/critical_statuscount_no"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="720"
+                    android:textSize="@dimen/_26sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/critical_status_count"
+                    android:layout_below="@id/critical_status"/>
+        </RelativeLayout>
+        <RelativeLayout
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="wrap_content"
+                android:backgroundTint="#31B689"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/btn_border_background"
+        >
+            <TextView
+                    android:id="@+id/major_status"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Alarm Critical status"/>
+            <TextView
+                    android:id="@+id/major_status_count"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Critical Alarm Count"
+                    android:layout_below="@id/major_status"/>
+            <TextView
+                    android:id="@+id/major_statuscount_no"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="720"
+                    android:textSize="@dimen/_26sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toRightOf="@id/major_status_count"
+                    android:layout_below="@id/major_status"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="wrap_content"
+                android:backgroundTint="#F7DC6F"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/btn_border_background"
+        >
+            <TextView
+                    android:id="@+id/minar_status"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Alarm Critical status"/>
+            <TextView
+                    android:id="@+id/minar_status_count"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Critical Alarm Count"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_below="@id/minar_status"/>
+            <TextView
+                    android:id="@+id/minar_statuscount_no"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="720"
+                    android:textSize="@dimen/_26sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/minar_status_count"
+                    android:layout_below="@id/minar_status"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="@dimen/_80sdp"
+                android:layout_width="wrap_content"
+                android:backgroundTint="#23ACF5"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/btn_border_background"
+        >
+            <TextView
+                    android:id="@+id/clearedl_status"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Alarm Critical status"/>
+            <TextView
+                    android:id="@+id/cleared_status_count"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Critical Alarm Count"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_below="@id/clearedl_status"/>
+            <TextView
+                    android:id="@+id/cleared_statuscount_no"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="720"
+                    android:textSize="@dimen/_26sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/cleared_status_count"
+                    android:layout_below="@id/clearedl_status"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
