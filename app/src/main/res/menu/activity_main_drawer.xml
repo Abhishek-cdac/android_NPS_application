@@ -13,7 +13,7 @@
 
         <item
                 android:id="@+id/live_kpi"
-                android:icon="@drawable/livealarm"
+                android:icon="@drawable/kpi"
                 android:title="Live KPI"/>
 
         <item
@@ -24,6 +24,7 @@
         <item
                 android:id="@+id/logout"
                 android:icon="@drawable/logout"
+                android:visible="false"
                 android:title="Logout"/>
 
     </group>

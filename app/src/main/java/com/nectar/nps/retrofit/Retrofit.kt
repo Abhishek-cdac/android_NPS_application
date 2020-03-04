@@ -17,7 +17,7 @@ class Retrofit {
     companion object {
         @JvmStatic
         val TAG = com.nectarinfotel.retrofit.Retrofit::class.java.simpleName
-        private val DEFAULT_TIMEOUT_SEC = 60
+        private val DEFAULT_TIMEOUT_SEC = 2000
         var client: OkHttpClient? = null
 
         fun getClient(): Retrofit? {

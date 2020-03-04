@@ -33,11 +33,11 @@ class Alarmtype_Adapter(private val myContext: Context, fm: FragmentManager, int
             }
             else -> return null
         }
-        Log.d("2222",""+22222)
+
     }
     // this counts total number of tabs
     override fun getCount(): Int {
-        Log.d("totalTabs",""+totalTabs)
+
         return totalTabs
     }
     /*override fun saveState(): Parcelable? {

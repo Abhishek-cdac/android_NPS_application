@@ -30,14 +30,14 @@ class CustomExpandableListAdapter internal constructor(private val context: Cont
         }
         val expandedListTextView = convertView!!.findViewById<TextView>(R.id.expandedListItem)
         val expandedListTextView1 = convertView!!.findViewById<TextView>(R.id.expandedListItem1)
-       // expandedListTextView.text = expandedListText
-       // expandedListTextView1.text = ""
+       expandedListTextView.text = expandedListText
+     //  expandedListTextView1.text =  expandedListText
         return convertView
     }
 
     override fun getChildrenCount(listPosition: Int): Int {
-        return 1
-        //return this.dataList[this.titleList[listPosition]]!!.size
+       // return 1
+        return this.dataList[this.titleList[listPosition]]!!.size
     }
 
     override fun getGroup(listPosition: Int): Any {

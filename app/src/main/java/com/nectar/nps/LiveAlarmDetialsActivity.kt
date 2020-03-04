@@ -28,7 +28,7 @@ class LiveAlarmDetialsActivity : AppCompatActivity() {
         Log.d("access_token", NectarApplication.token)
      //  val call = NectarApplication.mRetroClient!!.callDashboardAPI()
      //   "Bearer "+
-       val call = NectarApplication.mRetroClient!!.callDashboardAPI( "Bearer "+ NectarApplication.token)
+     /*  val call = NectarApplication.mRetroClient!!.callDashboardAPI( "Bearer "+ NectarApplication.token)
 
         
         call.enqueue(object : Callback<JsonArray> {
@@ -56,7 +56,7 @@ class LiveAlarmDetialsActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Login Failed"+t, Toast.LENGTH_SHORT).show()
             }
         })
-
+*/
        /* call.enqueue(object : Callback<List<Dashboard1>> {
             override fun onResponse(call: Call<List<Dashboard1>>, response: Response<List<Dashboard1>>) {
                 //Log.i("onResponse", response.message());

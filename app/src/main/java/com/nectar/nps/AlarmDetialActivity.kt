@@ -11,60 +11,40 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.JsonArray
 import com.nectar.nps.Adapter.AlarmAdapter
 import com.nectar.nps.Adapter.Alarmtype_Adapter
 import com.nectar.nps.data.ActiveAlarm
+import com.nectar.nps.data.AlarmDashboard
+import com.nectarinfotel.utils.NectarApplication
 import kotlinx.android.synthetic.main.alarm_details_layout.*
 import kotlinx.android.synthetic.main.alarm_item_layout.*
 import kotlinx.android.synthetic.main.alarm_item_layout.view.*
 import kotlinx.android.synthetic.main.alarm_item_layout.view.alarm_list
+import kotlinx.android.synthetic.main.alarmdashboard_layout.*
 import kotlinx.android.synthetic.main.login_layout.*
+import kotlinx.android.synthetic.main.login_layout.loading
+import org.json.JSONArray
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AlarmDetialActivity:AppCompatActivity() {
     internal var textlength = 0
-    internal lateinit var data: ActiveAlarm
+    internal lateinit var data: AlarmDashboard
+    //internal lateinit var data: ActiveAlarm
     val animals: ArrayList<String> = ArrayList()
     val animals1: ArrayList<String> = ArrayList()
-    fun addAnimals() {
-
-        animals.add("Alarm 1")
-        animals.add("Alarm 2")
-        animals.add("Alarm 3")
-        animals.add("Alarm 4")
-        animals.add("Alarm 5")
-        animals.add("Alarm 6")
-        animals.add("Alarm 7")
-        animals.add("Alarm 8")
-    }
+    private var alarm: MutableList<AlarmDashboard> = mutableListOf()
+    private var filteralarm: MutableList<AlarmDashboard> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.alarm_item_layout)
-     //   tabLayout = findViewById(R.id.tabLayout) as TabLayout
-       /* tabLayout!!.addTab(tabLayout!!.newTab().setText("Active Alarm"))
-        tabLayout!!.addTab(tabLayout!!.newTab().setText("Resolved Alarm"))
-        tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
 
-        val adapter = Alarmtype_Adapter(this, supportFragmentManager, tabLayout!!.tabCount)
-       viewPager!!.adapter = adapter
-
-        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-
-        tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                viewPager!!.currentItem = tab.position
-            }
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-
-            }
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-
-            }
-        })*/
-        addAnimals()
         // Creates a vertical Layout Manager
         alarm_list.layoutManager = LinearLayoutManager(applicationContext)
 
@@ -72,13 +52,12 @@ class AlarmDetialActivity:AppCompatActivity() {
         // You can use GridLayoutManager if you want multiple columns. Enter the number of columns as a parameter.
         // rv_animal_list.layoutManager = GridLayoutManager(this, 2)
         // Access the RecyclerView Adapter and load the data into it
-        alarm_list.adapter= applicationContext?.let { AlarmAdapter(it,animals) }
+        alarm_list.adapter= applicationContext?.let { AlarmAdapter(it,alarm) }
         //  getactivealarm()
          active_back_layout.setOnClickListener { view: View ->
             finish()
         }
-       /* edittext!!.addTextChangedListener(object : TextWatcher {
-
+       edittext!!.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
@@ -86,20 +65,93 @@ class AlarmDetialActivity:AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 textlength = edittext!!.text.length
-                animals1.clear()
-                for (i in animals.indices) {
-                    if (textlength <= animals[i].length) {
-                        Log.d("ertyyy", animals[i].toLowerCase().trim())
-                        if (animals[i].toLowerCase().trim().contains(
+                filteralarm.clear()
+                for (i in alarm.indices) {
+                    if (textlength <= alarm.size) {
+
+                        if (alarm[i].siteName.toLowerCase().trim().contains(
                                 edittext!!.text.toString().toLowerCase().trim { it <= ' ' })
-                        ) {
-                            animals1.add(animals[i])
+                        )
+                        {
+                            filteralarm.add(alarm[i])
+                        }
+                            if (alarm[i].specificProblem.toLowerCase().trim().contains(
+                                edittext!!.text.toString().toLowerCase().trim { it <= ' ' })
+                        )
+
+                        {
+                            filteralarm.add(alarm[i])
+                        }
+                        if (alarm[i].probableCause.toLowerCase().trim().contains(
+                                edittext!!.text.toString().toLowerCase().trim { it <= ' ' })
+                        )
+
+                        {
+                            filteralarm.add(alarm[i])
+                        }
+                        if (alarm[i].venderName.toLowerCase().trim().contains(
+                                edittext!!.text.toString().toLowerCase().trim { it <= ' ' })
+                        )
+
+                        {
+                            filteralarm.add(alarm[i])
+                        }
+                        if (alarm[i].managedElement.toLowerCase().trim().contains(
+                                edittext!!.text.toString().toLowerCase().trim { it <= ' ' })
+                        )
+
+                        {
+                            filteralarm.add(alarm[i])
                         }
                     }
                 }
-                alarm_list.adapter= applicationContext?.let { AlarmAdapter(it,animals1) }
+                alarm_list.adapter= applicationContext?.let { AlarmAdapter(it,filteralarm) }
 
             }
-        })*/
+        })
+
+        callcriticalalarmapi()
+    }
+
+    private fun callcriticalalarmapi() {
+        val call = NectarApplication.mRetroClient!!.callCriticalAlarmcountAPI( "Bearer "+ NectarApplication.token)
+        call.enqueue(object : Callback<JsonArray> {
+            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
+                progressbar_alarm.visibility=View.GONE
+                Log.d("str_response", response.body().toString())
+                var str_response = response.body()
+                val rsp: JsonArray? = response.body() ?: return
+
+                var jsonArray = JSONArray(response.body().toString())
+                  for (jsonIndex in 0..(jsonArray.length() - 1)) {
+
+                       data = AlarmDashboard()
+
+                     //  data.setVenderID(VenderID)
+                       data.setVenderName(jsonArray.getJSONObject(jsonIndex).getString("VenderName"))
+                       data.setProbableCause(jsonArray.getJSONObject(jsonIndex).getString("ProbableCause"))
+                       data.setManagedElement(jsonArray.getJSONObject(jsonIndex).getString("ManagedElement"))
+                       data.setSpecificProblem(jsonArray.getJSONObject(jsonIndex).getString("SpecificProblem"))
+                       data.setSiteName(jsonArray.getJSONObject(jsonIndex).getString("SiteName"))
+                       data.setEventTime(jsonArray.getJSONObject(jsonIndex).getString("EventTime"))
+                       alarm.add(data)
+                   }
+
+                if(alarm.size>0)
+                {
+                    alarm_list.adapter?.notifyDataSetChanged()
+                }
+                else
+                {
+                    Toast.makeText(applicationContext, "" +
+                            " records found", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<JsonArray>, t: Throwable) {
+                progressbar_alarm.visibility=View.GONE
+                Log.d("str_responsefail", "LoginFailed"+t)
+                Toast.makeText(applicationContext, "please try again"+t, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

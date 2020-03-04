@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-android:orientation="vertical">
+              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical">
     <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -10,28 +10,135 @@ android:orientation="vertical">
             android:layout_marginTop="@dimen/_10sdp"
             android:textStyle="bold"
             android:text="Alarm"/>
+    <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+    >
+
     <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_marginRight="10dp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_height="210dp" />
+            androidPlot.graphWidget.paddingBottom="100dp"
+            android:layout_height="200dp" />
 
-
+    <ProgressBar
+            android:id="@+id/loading"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:layout_centerInParent="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/password"
+            app:layout_constraintStart_toStartOf="@+id/password"
+            app:layout_constraintTop_toTopOf="parent"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorPrimaryDark"
+            app:layout_constraintVertical_bias="0.3"/>
+    </RelativeLayout>
     <TextView
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="@dimen/_10sdp"
     android:textStyle="bold"
+    android:visibility="visible"
     android:text="Site Down"/>
 
-    <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChart_sitedown"
-            android:layout_marginLeft="10dp"
-            android:layout_width="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_height="210dp" />
+    <RelativeLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:visibility="visible">
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/sitedown_text"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:background="@drawable/rounded_red"
+                    android:text=""
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toRightOf="@id/sitedown_text"
+                    android:text="Site Down" />
+            <TextView
+                    android:id="@+id/siteup_text"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:background="@drawable/rounded_blue"
+                    android:layout_gravity="center_vertical"
+                    android:text=""
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@id/sitedown_text"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+            <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/siteup_text"
+                    android:layout_below="@id/sitedown_text"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Site UP" />
+
+        </RelativeLayout>
+    <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartsiteupdown"
+            android:layout_width="@dimen/_300sdp"
+            android:layout_height="@dimen/_300sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible" />
+
+        <ProgressBar
+                android:id="@+id/loading_siteupdown"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="64dp"
+                android:layout_centerInParent="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/password"
+                app:layout_constraintStart_toStartOf="@+id/password"
+                app:layout_constraintTop_toTopOf="parent"
+                android:indeterminateTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintVertical_bias="0.3"/>
+    </RelativeLayout>
+
 </LinearLayout>

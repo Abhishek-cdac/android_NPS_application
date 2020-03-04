@@ -38,7 +38,7 @@ class ActiveAlarmFragment : Fragment(){
         // You can use GridLayoutManager if you want multiple columns. Enter the number of columns as a parameter.
         // rv_animal_list.layoutManager = GridLayoutManager(this, 2)
         // Access the RecyclerView Adapter and load the data into it
-        view.alarm_list.adapter= activity?.let { AlarmAdapter(it,animals) }
+       // view.alarm_list.adapter= activity?.let { AlarmAdapter(it,animals) }
       //  getactivealarm()
         view. active_back_layout.setOnClickListener { view: View ->
             activity?.finish()

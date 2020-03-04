@@ -15,6 +15,7 @@ import com.nectar.nps.utils.PrefUtils
 import com.nectarinfotel.utils.AppConstants
 import com.nectarinfotel.utils.NectarApplication
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.livekpi_layout.*
 import kotlinx.android.synthetic.main.login_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.login_layout)
         setvalueforrememberme()
         login_button.setOnClickListener { view: View ->
-            startActivity(Intent(applicationContext,MainActivity::class.java))
-          /*  if(username.text.toString().length==0)
+          //  startActivity(Intent(applicationContext,MainActivity::class.java))
+            if(username.text.toString().length==0)
             {
                 Toast.makeText(applicationContext, "Please enter username", Toast.LENGTH_SHORT).show()
             }
@@ -49,18 +50,18 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Please enter password", Toast.LENGTH_SHORT).show()
             }
             else
-            {*/
-
-        /*   var hashMap : HashMap<String, String>
+            {
+                loading.visibility=View.VISIBLE
+           var hashMap : HashMap<String, String>
                     = HashMap<String, String> ()
             hashMap.put("grant_type" , "password")
             hashMap.put("username" , username.text.toString())
             hashMap.put("password" , password.text.toString())
-          *//*  hashMap.put("username" , "urvish")
-            hashMap.put("password" , "admin")*//*
+
             val call = NectarApplication.mRetroClient!!.login(hashMap)
             call.enqueue(object : Callback<JsonObject> {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                    loading.visibility=View.GONE
                     Log.d("hjgugh", response.body().toString())
                     var rsp: JsonObject? = response.body() ?: return
                   //  Log.d("hjgugh", rsp.toString())
@@ -96,8 +97,8 @@ class LoginActivity : AppCompatActivity() {
 
                     Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT).show()
                 }
-            })*/
-        //}
+            })
+        }
 
 
 

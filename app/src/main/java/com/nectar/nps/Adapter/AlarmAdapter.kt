@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.nectar.nps.R
 import com.nectar.nps.data.ActiveAlarm
+import com.nectar.nps.data.AlarmDashboard
 import kotlinx.android.synthetic.main.alarm_type_item_layout.view.*
 
-class AlarmAdapter (private val context: Context, private val alarmlist: MutableList<String>) :
+class AlarmAdapter (private val context: Context, private val alarmlist: MutableList<AlarmDashboard>) :
     RecyclerView.Adapter<AlarmAdapter.ViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,7 +21,7 @@ class AlarmAdapter (private val context: Context, private val alarmlist: Mutable
 }
     override fun getItemCount(): Int {
         return alarmlist.size
-   // return alarmlist.size
+
 }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(alarmlist[position])
@@ -29,13 +30,24 @@ class AlarmAdapter (private val context: Context, private val alarmlist: Mutable
     }
 }
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItems(items: String) {
-           itemView.event_time.text = "Event Time : "+items
+        fun bindItems(items: AlarmDashboard) {
 
-          //  itemView.event_time.text = "Event Time : "+items.eventTime
-           /* itemView.problem_cause.text = "Problem Cause :"+items.probableCause
+
+            itemView.venderName.text = "vender Name : "+items.venderName
+            if(items.probableCause!=null)
+            {
+                itemView.problem_cause.visibility=View.VISIBLE
+                itemView.problem_cause.text = "Problem Cause :"+items.probableCause
+            }
+            else
+            {
+                itemView.problem_cause.visibility=View.GONE
+            }
+
             itemView.managed_element.text = "Managed Element :"+items.managedElement
-            itemView.hours.text ="Alarm Hours :"+ items.alarmHour*/
+            itemView.SpecificProblem.text = "SpecificProblem :"+items.specificProblem
+            itemView.SiteName.text ="Site Name :"+ items.siteName
+            itemView.hours.text ="Event Time :"+ items.eventTime
 
         }
 }

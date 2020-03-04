@@ -13,6 +13,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.WindowManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -62,7 +63,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // your code to perform when the user clicks on the button
             startActivity(Intent(this,AlarmDetialActivity::class.java))
         }
-
+        logout.setOnClickListener {
+            // your code to perform when the user clicks on the button
+            startActivity(Intent(this,LoginActivity::class.java))
+        }
 
     }
 

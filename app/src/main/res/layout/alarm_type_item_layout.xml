@@ -15,31 +15,50 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_5sdp"
                         >
-        <TextView android:id="@+id/event_time"
+        <TextView android:id="@+id/venderName"
                   android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
-                  android:text="Event time"/>
+                  android:textColor="@color/colorPrimaryDark"
+                  android:text="vender Name"/>
 
         <TextView android:id="@+id/problem_cause"
                   android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
                   android:text="Problem cause"
-                  android:layout_below="@id/event_time"
+                  android:textColor="@color/colorPrimaryDark"
+                  android:layout_below="@id/venderName"
                   android:layout_marginTop="@dimen/_5sdp"/>
 
         <TextView android:id="@+id/managed_element"
                   android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
                   android:text="Managed Element"
+                  android:textColor="@color/colorPrimaryDark"
                   android:layout_below="@id/problem_cause"
                   android:layout_marginTop="@dimen/_5sdp"/>
+
+            <TextView android:id="@+id/SiteName"
+                      android:layout_height="wrap_content"
+                      android:layout_width="wrap_content"
+                      android:text="Site Name"
+                      android:textColor="@color/colorPrimaryDark"
+                      android:layout_below="@id/managed_element"
+                      android:layout_marginTop="@dimen/_5sdp"/>
+
+            <TextView android:id="@+id/SpecificProblem"
+                      android:layout_height="wrap_content"
+                      android:layout_width="wrap_content"
+                      android:text="Specific Problem"
+                      android:textColor="@color/colorPrimaryDark"
+                      android:layout_below="@id/SiteName"
+                      android:layout_marginTop="@dimen/_5sdp"/>
 
         <TextView android:id="@+id/hours"
                   android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
                   android:text="Hours"
-                  android:layout_alignParentRight="true"
-                  android:layout_below="@id/managed_element"
+                  android:textColor="@color/colorPrimaryDark"
+                  android:layout_below="@id/SpecificProblem"
                   android:layout_marginTop="@dimen/_5sdp"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

@@ -51,12 +51,27 @@ class LiveAlarmFragment :AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.livealarmdashboard_layout)
-        total_layout.setOnClickListener { view: View ->
+        critical_alarm_layout.setOnClickListener { view: View ->
 
             startActivity(Intent(applicationContext,AlarmDetialActivity::class.java))
 
         }
-      //  callalarmcountapi()
+        major_alarm_layout.setOnClickListener { view: View ->
+
+            startActivity(Intent(applicationContext,MajorAlarmDetialActivity::class.java))
+
+        }
+        minar_alarm_layout.setOnClickListener { view: View ->
+
+            startActivity(Intent(applicationContext,MinarAlarmDetialActivity::class.java))
+
+        }
+        cleared_alarm_layout.setOnClickListener { view: View ->
+
+            startActivity(Intent(applicationContext,ClearedlAlarmDetialActivity::class.java))
+
+        }
+        //callalarmcountapi()
 
         livealarm_back_layout.setOnClickListener { view: View ->
             finish()
@@ -82,7 +97,7 @@ class LiveAlarmFragment :AppCompatActivity() {
         call.enqueue(object : Callback<JsonArray> {
             override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
                 Log.d("ddfgf", response.body().toString())
-                var str_response = response.body()!!.toString()
+              //  var str_response = response.body()!!.toString()
                 val rsp: JsonArray? = response.body() ?: return
                 //   val leagueArray = JSONArray(jsonArray)
 

@@ -43,6 +43,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimaryDark"
             app:tabTextColor="@color/white"
+            android:visibility="gone"
             tools:ignore="MissingConstraints">
     </com.google.android.material.tabs.TabLayout>
 
@@ -51,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
+
             android:layout_marginBottom="@dimen/_50sdp">
     </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>
