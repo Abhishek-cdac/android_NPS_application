@@ -11,6 +11,7 @@ class NectarApplication : Application(){
     companion object {
         var mRetroClient: RetroAPIInterface? = null
         var userID : String = ""
+        var userName : String = ""
         var token : String = ""
         var Password : String = ""
 

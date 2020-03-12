@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.login_layout)
         setvalueforrememberme()
         login_button.setOnClickListener { view: View ->
-          //  startActivity(Intent(applicationContext,MainActivity::class.java))
+
             if(username.text.toString().length==0)
             {
                 Toast.makeText(applicationContext, "Please enter username", Toast.LENGTH_SHORT).show()
@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
             }
             else
             {
+
                 loading.visibility=View.VISIBLE
            var hashMap : HashMap<String, String>
                     = HashMap<String, String> ()
@@ -62,10 +63,11 @@ class LoginActivity : AppCompatActivity() {
             call.enqueue(object : Callback<JsonObject> {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     loading.visibility=View.GONE
-                    Log.d("hjgugh", response.body().toString())
+                    Log.d("response", response.body().toString())
                     var rsp: JsonObject? = response.body() ?: return
                   //  Log.d("hjgugh", rsp.toString())
                     var user_id = rsp!!["user_id"]
+                    var userName = rsp!!["userName"]
                     Log.d("user_id", user_id.toString())
                     access_token = rsp!!["access_token"].toString()
                   //  access_token = access_token!!.drop(1)
@@ -73,6 +75,8 @@ class LoginActivity : AppCompatActivity() {
                     access_token=access_token.substring(1, access_token.length-1);
                     Log.d("access_token", access_token.toString())
                      NectarApplication.token=access_token
+
+                    NectarApplication.userName=userName.toString()
                      //rememberme()
                     val sharedPreferences: SharedPreferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
                     val editor: SharedPreferences.Editor =  sharedPreferences.edit()
@@ -94,16 +98,11 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(applicationContext,MainActivity::class.java))
                 }
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-
                     Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT).show()
                 }
             })
         }
-
-
-
         }
-
     }
 
     private fun setvalueforrememberme() {
@@ -113,8 +112,7 @@ class LoginActivity : AppCompatActivity() {
 
         if(sharedNameValue!=null&&sharedPasswordValue!=null)
         {
-            username.setText(sharedNameValue).toString()
-            password.setText(sharedPasswordValue).toString()
+
             checkbox1.isChecked= true
         }
         else
@@ -123,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun rememberme() {
+         private fun rememberme() {
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor =  sharedPreferences.edit()
 

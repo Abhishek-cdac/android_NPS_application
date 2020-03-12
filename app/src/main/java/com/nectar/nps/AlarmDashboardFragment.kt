@@ -68,38 +68,38 @@ class AlarmDashboardFragment : Fragment() {
 
                 val rsp: JsonObject? = response.body() ?: return
 
-                  val json_contact:JsonObject =  rsp!!.asJsonObject
+                val json_contact:JsonObject =  rsp!!.asJsonObject
 
-                  var jsonArray:JsonArray= json_contact.getAsJsonArray("Table")
+                var jsonArray:JsonArray= json_contact.getAsJsonArray("Table")
 
-                   for (jsonIndex in 0..(jsonArray.size() - 1)) {
-                       val sObject = jsonArray.get(jsonIndex).toString()
-                       val mItemObject = JSONObject(sObject)
+                for (jsonIndex in 0..(jsonArray.size() - 1)) {
+                    val sObject = jsonArray.get(jsonIndex).toString()
+                    val mItemObject = JSONObject(sObject)
 
-                       val SiteDetailID = mItemObject.getString("SiteDetailID")
-                       val SiteDetailName = mItemObject.getString("SiteDetailName")
-                       val TotalAlarm = mItemObject.getString("TotalAlarm")
+                    val SiteDetailID = mItemObject.getString("SiteDetailID")
+                    val SiteDetailName = mItemObject.getString("SiteDetailName")
+                    val TotalAlarm = mItemObject.getString("TotalAlarm")
 
 
-                       Log.d("SiteDetailID", SiteDetailID)
-                       Log.d("SiteDetailName", SiteDetailName)
-                       Log.d("TotalAlarm", TotalAlarm)
+                    Log.d("SiteDetailID", SiteDetailID)
+                    Log.d("SiteDetailName", SiteDetailName)
+                    Log.d("TotalAlarm", TotalAlarm)
 
-                       data = AlarmDashboard()
+                    data = AlarmDashboard()
                     //   data.setSiteDetailID(VenderID)
-                     //  data.setSiteDetailName(SiteDetailName)
+                    //  data.setSiteDetailName(SiteDetailName)
                     //   data.setTotalAlarm(TotalAlarm)
 
-                       entries.add(BarEntry(TotalAlarm.toFloat(), jsonIndex))
+                    entries.add(BarEntry(TotalAlarm.toFloat(), jsonIndex))
 
-                      labels.add(SiteDetailName)
+                    labels.add(SiteDetailName)
 
-                   }
-                  // alatmgraph.add(data)
+                }
+                // alatmgraph.add(data)
 
-                 //  setBarChart(alatmgraph1 as ArrayList<BarEntry>, alatmgraph2 as ArrayList<String>)
-                   setBarChart(entries , labels)
-                   Log.d("ddfgf", "alatmgraph "+alatmgraph.size)
+                //  setBarChart(alatmgraph1 as ArrayList<BarEntry>, alatmgraph2 as ArrayList<String>)
+                setBarChart(entries , labels)
+                Log.d("ddfgf", "alatmgraph "+alatmgraph.size)
             }
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -153,7 +153,7 @@ class AlarmDashboardFragment : Fragment() {
         faqsView.pieChartsiteupdown.setUsePercentValues(true)
         faqsView.pieChartsiteupdown.setRotationEnabled(false)
         faqsView.pieChartsiteupdown.setHoleRadius(0f)
-       // faqsView.pieChartsiteupdown.setDescription("")
+        // faqsView.pieChartsiteupdown.setDescription("")
         faqsView.pieChartsiteupdown.animateXY(1000, 1000)
         faqsView.pieChartsiteupdown.setDrawHoleEnabled(false)
         faqsView.pieChartsiteupdown.invalidate()
@@ -222,9 +222,9 @@ class AlarmDashboardFragment : Fragment() {
 
         xaxis.mLabelRotatedHeight=100
         xaxis.mLabelRotatedWidth=15
-     //   xaxis.setLabelRotationAngle(-45F);
+        //   xaxis.setLabelRotationAngle(-45F);
         xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-       xaxis.spaceBetweenLabels = 1
+        xaxis.spaceBetweenLabels = 1
         faqsView.barChart.getLegend().setEnabled(false);
         //    barChart.setOnChartValueSelectedListener(this)
         // barChart.setPinchZoom(true)

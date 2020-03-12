@@ -41,7 +41,6 @@
         >
 
         <androidx.recyclerview.widget.RecyclerView
-
             android:id="@+id/alarm_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -52,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
+            android:hint="search alarm"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_below="@id/toolbar"/>
 

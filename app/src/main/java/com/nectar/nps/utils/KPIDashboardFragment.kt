@@ -39,24 +39,25 @@ class KPIDashboardFragment  : Fragment() {
     private var alatmgraph2: MutableList<String> = mutableListOf()
     // val alatmgraph: ArrayList<AlarmDashboard> = ArrayList()
     lateinit var faqsView: View
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         faqsView = inflater?.inflate(R.layout.kpidashboard_layoit, container, false)
-        val call = NectarApplication.mRetroClient!!.callDashboardAPI( "Bearer "+ NectarApplication.token)
+        val call = NectarApplication.mRetroClient!!.callDashboardAPI("Bearer " + NectarApplication.token)
 
         alatmgraph3.add("0")
-        totalAttendance=40.0.toFloat()
-        presentCount=40.0.toFloat()
-        weekendcount=40.0.toFloat()
-        absentCount=40.0.toFloat()
-        drawpiechart()
+        totalAttendance = 40.0.toFloat()
+        presentCount = 40.0.toFloat()
+        weekendcount = 40.0.toFloat()
+        absentCount = 40.0.toFloat()
+        //drawpiechart()
         /*  alatmgraph2.add("1")
           alatmgraph2.add("2")
           alatmgraph2.add("3")
           alatmgraph2.add("4")*/
 
 
-       /* call.enqueue(object : Callback<JsonArray> {
+        /* call.enqueue(object : Callback<JsonArray> {
             override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
                 Log.d("ddfgf", response.body().toString())
                 val rsp: JsonArray? = response.body() ?: return
@@ -102,22 +103,11 @@ class KPIDashboardFragment  : Fragment() {
         })*/
         return faqsView
     }
+
     private fun setBarValuesForDepartment(info: List<String>) {
-        if(info.isEmpty()) return
-        var totalAgentTicket : Int = 0
-
-        for((start, departmentObj) in info.withIndex()){
 
 
-            val total = info.lastIndex.toFloat()
-            alatmgraph1.add(BarEntry(total,start))
-            totalAgentTicket += total.toInt()
-
-
-        }}
-
-
-    private fun drawpiechart() {
+        /* private fun drawpiechart() {
         faqsView. pieChartAttendance.setVisibility(View.VISIBLE)
         faqsView. pieChartAttendance.setPressed(false)
         faqsView.pieChartAttendance.setUsePercentValues(true)
@@ -169,9 +159,7 @@ class KPIDashboardFragment  : Fragment() {
         piedata.setValueTextSize(11f)
         piedata.setValueTextColor(Color.WHITE)
         faqsView. pieChartAttendance.setData(piedata)
+    }*/
     }
-}
-
-private operator fun String.invoke(string: String?) {
 
 }

@@ -43,7 +43,7 @@ class LiveAlarmFragment :AppCompatActivity() {
     var totalcount: Int? = 0
     lateinit var faqsView: View
     private lateinit var tabLayout: TabLayout
-
+    var  cnt=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -71,26 +71,65 @@ class LiveAlarmFragment :AppCompatActivity() {
             startActivity(Intent(applicationContext,ClearedlAlarmDetialActivity::class.java))
 
         }
-        //callalarmcountapi()
+        callclearedalarmcountapi()
+        callalarmcountapi()
 
         livealarm_back_layout.setOnClickListener { view: View ->
             finish()
         }
     }
-   /* override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        faqsView = inflater?.inflate(R.layout.livealarmdashboard_layout, container, false)
-        faqsView.total_layout.setOnClickListener { view: View ->
 
-            startActivity(Intent(activity,AlarmDetialActivity::class.java))
+    private fun callclearedalarmcountapi() {
+        val call = NectarApplication.mRetroClient!!.callAlarmclearedCOuntAPI( "Bearer "+ NectarApplication.token)
+        call.enqueue(object : Callback<JsonArray> {
+            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
+                Log.d("clearedcount", response.body().toString())
+                //  var str_response = response.body()!!.toString()
+                val rsp: JsonArray? = response.body() ?: return
+                //   val leagueArray = JSONArray(jsonArray)
 
-        }
-        callalarmcountapi()
+                var jsonArray = JSONArray(response.body().toString())
+                // var jsonArray1 = JSONArray("data")
+                // val json_contact:JSONObject = JSONObject(str_response)
 
-        faqsView.back_layout.setOnClickListener { view: View ->
-            activity?.finish()
-        }
-        return faqsView
-    }*/
+                //   var jsonarray_contacts:JSONArray= json_contact.getJSONArray("contacts")
+
+
+                for (jsonIndex in 0..(jsonArray.length() - 1)) {
+                      cnt=jsonArray.getJSONObject(jsonIndex).getString("cnt")
+
+                       Log.d("PerceivedSeverityID", cnt)
+
+                        cleared_alarm_value.text=cnt
+
+
+                  //  total_count.text=totalcount.toString()
+                    //{"flag":true,"msg":"Data found","info":[{"total":"49","status":"assigned"},{"total":"6","status":"escalated_tto"},{"total":"7","status":"escalated_ttr"},{"total":"21","status":"new"},{"total":"16","status":"resolved"}]}
+                    //D/responbse: {"flag":true,"msg":"Data found","info":[{"total":"49","status":"assigned"},{"total":"6","status":"escalated_tto"},{"total":"7","status":"escalated_ttr"},{"total":"21","status":"new"},{"total":"16","status":"resolved"}]}
+                }
+
+
+            }
+            override fun onFailure(call: Call<JsonArray>, t: Throwable) {
+                Log.d("ddfgf", "LoginFailed"+t)
+                Toast.makeText(applicationContext, "Login Failed"+t, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+    /* override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+         faqsView = inflater?.inflate(R.layout.livealarmdashboard_layout, container, false)
+         faqsView.total_layout.setOnClickListener { view: View ->
+
+             startActivity(Intent(activity,AlarmDetialActivity::class.java))
+
+         }
+         callalarmcountapi()
+
+         faqsView.back_layout.setOnClickListener { view: View ->
+             activity?.finish()
+         }
+         return faqsView
+     }*/
 
     private fun callalarmcountapi() {
         val call = NectarApplication.mRetroClient!!.callAlarmCOuntAPI( "Bearer "+ NectarApplication.token)
@@ -119,7 +158,7 @@ class LiveAlarmFragment :AppCompatActivity() {
                     Log.d("totalcount", ""+totalcount)
                     Log.d("PerceivedSeverityID", PerceivedSeverityID)
                     Log.d("PerceivedSeverity", PerceivedSeverity)
-                    Log.d("AlarmsCount", AlarmsCount)
+                    Log.d("AlarmsCount", cnt)
 
                     if(PerceivedSeverity.equals("Critical"))
                     {
@@ -131,18 +170,28 @@ class LiveAlarmFragment :AppCompatActivity() {
                     }
                     else  if(PerceivedSeverity.equals("Minor"))
                     {
-                        minar_alarm_value.text=AlarmsCount
+                        Minar.text=AlarmsCount
                     }
-                    else  if(PerceivedSeverity.equals("Cleared"))
+                    /*else  if(PerceivedSeverity.equals("Cleared"))
                     {
                         cleared_alarm_value.text=AlarmsCount
-                    }
+                    }*/
 
-                    total_count.text=totalcount.toString()
+
                     //{"flag":true,"msg":"Data found","info":[{"total":"49","status":"assigned"},{"total":"6","status":"escalated_tto"},{"total":"7","status":"escalated_ttr"},{"total":"21","status":"new"},{"total":"16","status":"resolved"}]}
                     //D/responbse: {"flag":true,"msg":"Data found","info":[{"total":"49","status":"assigned"},{"total":"6","status":"escalated_tto"},{"total":"7","status":"escalated_ttr"},{"total":"21","status":"new"},{"total":"16","status":"resolved"}]}
                 }
-
+                if(!cnt.equals(""))
+                {
+                    total=cnt.toInt()
+                    totalcount= totalcount!! + total!!
+                    total_count.text = totalcount.toString()
+                    Log.d("totalcount", totalcount.toString())
+                }
+                else {
+                    total_count.text = totalcount.toString()
+                    Log.d("totalcount111", totalcount.toString())
+                }
 
             }
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
