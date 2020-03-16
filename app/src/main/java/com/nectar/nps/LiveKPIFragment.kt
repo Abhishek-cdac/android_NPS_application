@@ -16,6 +16,7 @@ import com.google.gson.JsonObject
 import com.nectar.nps.Adapter.CustomExpandableListAdapter
 import com.nectarinfotel.utils.NectarApplication
 import kotlinx.android.synthetic.main.filterkpi_layout.*
+import kotlinx.android.synthetic.main.filterkpi_layout.view.*
 import kotlinx.android.synthetic.main.livekpi_layout.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -267,7 +268,7 @@ class LiveKPIFragment : AppCompatActivity() {
                 dialog.date.setText("" + year + "-" + (monthOfYear+1) + "-" + dayOfMonth)
 
             }, year, month, day)
-
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
             datePickerDialog.show()
         }
         dialog.search.setOnClickListener {
@@ -276,21 +277,25 @@ class LiveKPIFragment : AppCompatActivity() {
             if(dialog.date.text.toString().length==0)
             {
                 Toast.makeText(applicationContext, "Please select date", Toast.LENGTH_SHORT).show()
-            } else    if(dialog.date.text.toString().length==0)
+            } else    if(dialog.fromtime.text.toString().length==0)
             {
                 Toast.makeText(applicationContext, "Please enter  time", Toast.LENGTH_SHORT).show()
             }
-            else    if(dialog.date.text.toString().length==0)
+            else    if(dialog.totime.text.toString().length==0)
             {
                 Toast.makeText(applicationContext, "Please enter  time", Toast.LENGTH_SHORT).show()
+            }
+            else    if(dialog.totime.text.toString().toInt()<dialog.fromtime.text.toString().toInt())
+            {
+                Toast.makeText(applicationContext, "Please enter  correct  time", Toast.LENGTH_SHORT).show()
             }
             else{
                 isdialog=true
             getlivekpilist(dialog.date.text.toString(),dialog.fromtime.text.toString(),dialog.totime.text.toString())
             dialog .dismiss() }}
-        dialog.close.setOnClickListener {
+            dialog.close.setOnClickListener {
             dialog .dismiss() }
-        dialog .show()
+             dialog .show()
 
     }
 }

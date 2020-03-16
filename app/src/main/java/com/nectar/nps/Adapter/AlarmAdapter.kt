@@ -32,7 +32,6 @@ class AlarmAdapter (private val context: Context, private val alarmlist: Mutable
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindItems(items: AlarmDashboard) {
 
-
             itemView.venderName.text = "vender Name : "+items.venderName
             if(items.probableCause!=null)
             {

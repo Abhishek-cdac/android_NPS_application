@@ -64,38 +64,43 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     loading.visibility=View.GONE
                     Log.d("response", response.body().toString())
-                    var rsp: JsonObject? = response.body() ?: return
-                  //  Log.d("hjgugh", rsp.toString())
-                    var user_id = rsp!!["user_id"]
-                    var userName = rsp!!["userName"]
-                    Log.d("user_id", user_id.toString())
-                    access_token = rsp!!["access_token"].toString()
-                  //  access_token = access_token!!.drop(1)
-                    //access_token= access_token.replace("^0*".toRegex(), "") // -> 123
-                    access_token=access_token.substring(1, access_token.length-1);
-                    Log.d("access_token", access_token.toString())
-                     NectarApplication.token=access_token
+                    if(!response.body().toString().equals("null")) {
+                        var rsp: JsonObject? = response.body() ?: return
+                        //  Log.d("hjgugh", rsp.toString())
+                        var user_id = rsp!!["user_id"]
+                        var userName = rsp!!["userName"]
+                        Log.d("user_id", user_id.toString())
+                        access_token = rsp!!["access_token"].toString()
+                        //  access_token = access_token!!.drop(1)
+                        //access_token= access_token.replace("^0*".toRegex(), "") // -> 123
+                        access_token = access_token.substring(1, access_token.length - 1);
+                        Log.d("access_token", access_token.toString())
+                        NectarApplication.token = access_token
 
-                    NectarApplication.userName=userName.toString()
-                     //rememberme()
-                    val sharedPreferences: SharedPreferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-                    val editor: SharedPreferences.Editor =  sharedPreferences.edit()
-                 //   editor.putString(AppConstants.Username,username.text.toString())
-                   // editor.putString(AppConstants.Password,password.text.toString())
-                    if(checkbox1.isChecked)
-                    {
-                        editor.putString(AppConstants.Username,username.text.toString())
-                        editor.putString(AppConstants.Password,password.text.toString())
+                        NectarApplication.userName = userName.toString()
+                        //rememberme()
+                        val sharedPreferences: SharedPreferences =
+                            getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        //   editor.putString(AppConstants.Username,username.text.toString())
+                        // editor.putString(AppConstants.Password,password.text.toString())
+                        if (checkbox1.isChecked) {
+                            editor.putString(AppConstants.Username, username.text.toString())
+                            editor.putString(AppConstants.Password, password.text.toString())
+                        } else {
+                            editor.putString(AppConstants.Username, null)
+                            editor.putString(AppConstants.Password, null)
+                        }
+
+                        editor.apply()
+                        editor.commit()
+                        startActivity(Intent(applicationContext, MainActivity::class.java))
                     }
                     else
-                    {
-                        editor.putString(AppConstants.Username,null)
-                        editor.putString(AppConstants.Password,null)
-                    }
 
-                    editor.apply()
-                    editor.commit()
-                    startActivity(Intent(applicationContext,MainActivity::class.java))
+                    {
+                        Toast.makeText(applicationContext, "Login Failed, please check username or password", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT).show()
@@ -105,14 +110,15 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun setvalueforrememberme() {
+       private fun setvalueforrememberme() {
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val sharedNameValue = sharedPreferences.getString(AppConstants.Username,null)
         val sharedPasswordValue = sharedPreferences.getString(AppConstants.Password,null)
 
         if(sharedNameValue!=null&&sharedPasswordValue!=null)
         {
-
+            username.setText(sharedNameValue).toString()
+            password.setText(sharedPasswordValue).toString()
             checkbox1.isChecked= true
         }
         else
@@ -122,6 +128,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
          private fun rememberme() {
+
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor =  sharedPreferences.edit()
 

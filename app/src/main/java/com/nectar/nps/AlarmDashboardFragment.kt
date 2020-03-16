@@ -153,7 +153,7 @@ class AlarmDashboardFragment : Fragment() {
         faqsView.pieChartsiteupdown.setUsePercentValues(true)
         faqsView.pieChartsiteupdown.setRotationEnabled(false)
         faqsView.pieChartsiteupdown.setHoleRadius(0f)
-        // faqsView.pieChartsiteupdown.setDescription("")
+        faqsView.pieChartsiteupdown.setDescription("")
         faqsView.pieChartsiteupdown.animateXY(1000, 1000)
         faqsView.pieChartsiteupdown.setDrawHoleEnabled(false)
         faqsView.pieChartsiteupdown.invalidate()
