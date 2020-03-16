@@ -38,9 +38,6 @@ class LiveKPIFragment : AppCompatActivity() {
 
         var hashMap : HashMap<String, String>
                 = HashMap<String, String> ()
-       /* hashMap.put("FromTime" , "19")
-        hashMap.put("KPIDate" , "2020-02-17")
-        hashMap.put("ToTime" , "20")*/
 
         hashMap.put("FromTime" ,FromTime)
         hashMap.put("KPIDate" , KPIDate)
@@ -183,14 +180,7 @@ class LiveKPIFragment : AppCompatActivity() {
                     expandableListView.expandGroup(3)
                     expandableListView.expandGroup(4)
                 }
-                /* expandableListView!!.setOnGroupExpandListener { groupPosition -> Toast.makeText(applicationContext, (titleList as ArrayList<String>)[groupPosition] + " List Expanded.", Toast.LENGTH_SHORT).show() }
 
-                 expandableListView!!.setOnGroupCollapseListener { groupPosition -> Toast.makeText(applicationContext, (titleList as ArrayList<String>)[groupPosition] + " List Collapsed.", Toast.LENGTH_SHORT).show() }
-
-                 expandableListView!!.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-                     Toast.makeText(applicationContext, "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(titleList as ArrayList<String>)[groupPosition]]!!.get(childPosition), Toast.LENGTH_SHORT).show()
-                     true
-                 }*/
             }
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
 
@@ -209,8 +199,6 @@ class LiveKPIFragment : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
-
         setContentView(R.layout.livekpi_layout)
         getlivekpilist("2020-02-17","19","20")
         liveakpi_back_layout.setOnClickListener { view: View ->
@@ -222,32 +210,6 @@ class LiveKPIFragment : AppCompatActivity() {
         }
 
     }
-   /* override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-
-        faqsView = inflater?.inflate(R.layout.livekpi_layout, container, false)
-
-
-
-        if (faqsView.expandableListView != null) {
-            val listData = data
-            titleList = ArrayList(listData.keys)
-            adapter = CustomExpandableListAdapter(requireContext(), titleList as ArrayList<String>, listData)
-            faqsView.expandableListView!!.setAdapter(adapter)
-
-            faqsView.expandableListView!!.setOnGroupExpandListener { groupPosition -> Toast.makeText(activity, (titleList as ArrayList<String>)[groupPosition] + " List Expanded.", Toast.LENGTH_SHORT).show() }
-
-            faqsView.expandableListView!!.setOnGroupCollapseListener { groupPosition -> Toast.makeText(activity, (titleList as ArrayList<String>)[groupPosition] + " List Collapsed.", Toast.LENGTH_SHORT).show() }
-
-            faqsView. expandableListView!!.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-                Toast.makeText(activity, "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(titleList as ArrayList<String>)[groupPosition]]!!.get(childPosition), Toast.LENGTH_SHORT).show()
-                false
-            }
-        }
-
-
-        return faqsView
-    }*/
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun showDialog() {
