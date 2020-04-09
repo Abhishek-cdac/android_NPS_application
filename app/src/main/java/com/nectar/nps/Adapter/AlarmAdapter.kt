@@ -25,8 +25,7 @@ class AlarmAdapter (private val context: Context, private val alarmlist: Mutable
 }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(alarmlist[position])
-    holder.itemView.setOnClickListener {
-        //Toast.makeText(context, chaptersList.get(position), Toast.LENGTH_LONG).show()
+       holder.itemView.setOnClickListener {
     }
 }
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

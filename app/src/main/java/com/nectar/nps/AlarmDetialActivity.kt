@@ -1,11 +1,9 @@
 package com.nectar.nps
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
@@ -13,19 +11,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.JsonArray
 import com.nectar.nps.Adapter.AlarmAdapter
-import com.nectar.nps.Adapter.Alarmtype_Adapter
-import com.nectar.nps.data.ActiveAlarm
 import com.nectar.nps.data.AlarmDashboard
 import com.nectarinfotel.utils.NectarApplication
-import kotlinx.android.synthetic.main.alarm_details_layout.*
 import kotlinx.android.synthetic.main.alarm_item_layout.*
-import kotlinx.android.synthetic.main.alarm_item_layout.view.*
-import kotlinx.android.synthetic.main.alarm_item_layout.view.alarm_list
-import kotlinx.android.synthetic.main.alarmdashboard_layout.*
-import kotlinx.android.synthetic.main.login_layout.*
-import kotlinx.android.synthetic.main.login_layout.loading
 import org.json.JSONArray
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,7 +40,7 @@ class AlarmDetialActivity:AppCompatActivity() {
         // rv_animal_list.layoutManager = GridLayoutManager(this, 2)
         // Access the RecyclerView Adapter and load the data into it
         alarm_list.adapter= applicationContext?.let { AlarmAdapter(it,alarm) }
-        //  getactivealarm()
+
          active_back_layout.setOnClickListener { view: View ->
             finish()
         }
@@ -147,7 +136,7 @@ class AlarmDetialActivity:AppCompatActivity() {
             }
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
                 progressbar_alarm.visibility=View.GONE
-                Log.d("str_responsefail", "LoginFailed"+t)
+                Log.d("str_responsefail", "str_responsefail"+t)
                 Toast.makeText(applicationContext, "please try again"+t, Toast.LENGTH_SHORT).show()
             }
         })

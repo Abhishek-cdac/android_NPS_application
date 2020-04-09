@@ -7,6 +7,8 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ExpandableListAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -26,7 +28,7 @@ import org.json.JSONObject
 
 
 
-class LiveKPIFragment : AppCompatActivity() {
+class LiveKPIFragment : AppCompatActivity(), AdapterView.OnItemSelectedListener {
   //  internal var expandableListView: ExpandableListView? = null
     internal var adapter: ExpandableListAdapter? = null
     internal var titleList: List<String> ? = null
@@ -46,14 +48,13 @@ class LiveKPIFragment : AppCompatActivity() {
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 progressbar_kpi.visibility=View.GONE
-                Log.d("str_responsesssssssss", response.body().toString())
                 var str_response = response.body().toString()
 
                 val rsp: JsonObject? = response.body() ?: return
 
                 val json_contact:JsonObject =  rsp!!.asJsonObject
 
-                var jsonArray: JsonArray = json_contact.getAsJsonArray("Table")
+                var jsonArray: JsonArray = json_contact.getAsJsonArray("KPITrafficCS")
 
                 val listData = HashMap<String, List<String>>()
 
@@ -73,30 +74,13 @@ class LiveKPIFragment : AppCompatActivity() {
 
                 }
 
-                /* val TrafficPS = ArrayList<String>()
-                 var jsonArray1: JsonArray = json_contact.getAsJsonArray("Table1")
-                 for (jsonIndex in 0..(jsonArray1.size() - 1)) {
-                     val sObject = jsonArray1.get(jsonIndex).toString()
-                     val mItemObject = JSONObject(sObject)
-
-                     val TrafficPSvalue = mItemObject.getString("TrafficPS")
-                     val Cnt = mItemObject.getString("Cnt")
-                     val OrderNo = mItemObject.getString("OrderNo")
-
-                     TrafficPS.add(TrafficPSvalue)
-                     Log.d("TrafficPS", TrafficPSvalue)
-                     Log.d("Cnt", Cnt)
-                     Log.d("OrderNo", OrderNo)
-                     listData["RRC Success (%)  Cell Count"] = TrafficPS
-                 }*/
-
                 val RRCSuccessRate = ArrayList<String>()
-                var jsonArray2: JsonArray = json_contact.getAsJsonArray("Table2")
+                var jsonArray2: JsonArray = json_contact.getAsJsonArray("KPITrafficPS")
                 for (jsonIndex in 0..(jsonArray2.size() - 1)) {
                     val sObject = jsonArray2.get(jsonIndex).toString()
                     val mItemObject = JSONObject(sObject)
 
-                    val TrafficPSvalue = mItemObject.getString("RRCSuccessRate")
+                    val TrafficPSvalue = mItemObject.getString("TrafficPS")
                     val Cnt = mItemObject.getString("Cnt")
                     val OrderNo = mItemObject.getString("OrderNo")
 
@@ -106,10 +90,8 @@ class LiveKPIFragment : AppCompatActivity() {
                     Log.d("OrderNo", OrderNo)
 
                 }
-
-
                 val Avibility = ArrayList<String>()
-                var jsonArray3: JsonArray = json_contact.getAsJsonArray("Table3")
+                var jsonArray3: JsonArray = json_contact.getAsJsonArray("KPIAvibility")
                 for (jsonIndex in 0..(jsonArray3.size() - 1)) {
                     val sObject = jsonArray3.get(jsonIndex).toString()
                     val mItemObject = JSONObject(sObject)
@@ -125,9 +107,8 @@ class LiveKPIFragment : AppCompatActivity() {
 
                 }
 
-
                 val CSSRCS = ArrayList<String>()
-                var jsonArray5: JsonArray = json_contact.getAsJsonArray("Table4")
+                var jsonArray5: JsonArray = json_contact.getAsJsonArray("KPICSSRCS")
                 for (jsonIndex in 0..(jsonArray5.size() - 1)) {
                     val sObject = jsonArray5.get(jsonIndex).toString()
                     val mItemObject = JSONObject(sObject)
@@ -143,9 +124,8 @@ class LiveKPIFragment : AppCompatActivity() {
 
                 }
 
-
                 val DropCallRate = ArrayList<String>()
-                var jsonArray6: JsonArray = json_contact.getAsJsonArray("Table5")
+                var jsonArray6: JsonArray = json_contact.getAsJsonArray("KPIDropCallRate")
                 for (jsonIndex in 0..(jsonArray6.size() - 1)) {
                     val sObject = jsonArray6.get(jsonIndex).toString()
                     val mItemObject = JSONObject(sObject)
@@ -200,7 +180,10 @@ class LiveKPIFragment : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.livekpi_layout)
+
+        //call api for getting kpi data
         getlivekpilist("2020-02-17","19","20")
+
         liveakpi_back_layout.setOnClickListener { view: View ->
             finish()
         }
@@ -218,7 +201,13 @@ class LiveKPIFragment : AppCompatActivity() {
         dialog .requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog .setCancelable(false)
         dialog .setContentView(R.layout.filterkpi_layout)
-
+        var list_of_items = arrayOf("Select mode", "LUCRNC1")
+        dialog.spinner!!.setOnItemSelectedListener(this)
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_of_items)
+        // Set layout to use when the list of choices appear
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // Set Adapter to Spinner
+        dialog.spinner!!.setAdapter(aa)
         dialog.date.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
@@ -233,6 +222,7 @@ class LiveKPIFragment : AppCompatActivity() {
             datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
             datePickerDialog.show()
         }
+
         dialog.search.setOnClickListener {
 
             progressbar_kpi.visibility=View.VISIBLE
@@ -243,6 +233,10 @@ class LiveKPIFragment : AppCompatActivity() {
             {
                 Toast.makeText(applicationContext, "Please enter  time", Toast.LENGTH_SHORT).show()
             }
+            else  if(dialog.fromtime.text.toString().toInt()>24)
+            {
+                Toast.makeText(applicationContext, "Please enter  correct  time", Toast.LENGTH_SHORT).show()
+            }
             else    if(dialog.totime.text.toString().length==0)
             {
                 Toast.makeText(applicationContext, "Please enter  time", Toast.LENGTH_SHORT).show()
@@ -251,6 +245,11 @@ class LiveKPIFragment : AppCompatActivity() {
             {
                 Toast.makeText(applicationContext, "Please enter  correct  time", Toast.LENGTH_SHORT).show()
             }
+            else  if(dialog.totime.text.toString().toInt()>24)
+            {
+                Toast.makeText(applicationContext, "Please enter  correct  time", Toast.LENGTH_SHORT).show()
+            }
+
             else{
                 isdialog=true
             getlivekpilist(dialog.date.text.toString(),dialog.fromtime.text.toString(),dialog.totime.text.toString())
@@ -258,6 +257,14 @@ class LiveKPIFragment : AppCompatActivity() {
             dialog.close.setOnClickListener {
             dialog .dismiss() }
              dialog .show()
+
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
     }
 }

@@ -38,9 +38,11 @@ class LoginActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.login_layout)
+        //call method for checking remember me
         setvalueforrememberme()
-        login_button.setOnClickListener { view: View ->
 
+        login_button.setOnClickListener { view: View ->
+             //login functionality
             if(username.text.toString().length==0)
             {
                 Toast.makeText(applicationContext, "Please enter username", Toast.LENGTH_SHORT).show()
@@ -66,24 +68,19 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("response", response.body().toString())
                     if(!response.body().toString().equals("null")) {
                         var rsp: JsonObject? = response.body() ?: return
-                        //  Log.d("hjgugh", rsp.toString())
                         var user_id = rsp!!["user_id"]
                         var userName = rsp!!["userName"]
                         Log.d("user_id", user_id.toString())
                         access_token = rsp!!["access_token"].toString()
-                        //  access_token = access_token!!.drop(1)
-                        //access_token= access_token.replace("^0*".toRegex(), "") // -> 123
                         access_token = access_token.substring(1, access_token.length - 1);
                         Log.d("access_token", access_token.toString())
                         NectarApplication.token = access_token
-
                         NectarApplication.userName = userName.toString()
-                        //rememberme()
+
+                        //remember me functionality
                         val sharedPreferences: SharedPreferences =
                             getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
                         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                        //   editor.putString(AppConstants.Username,username.text.toString())
-                        // editor.putString(AppConstants.Password,password.text.toString())
                         if (checkbox1.isChecked) {
                             editor.putString(AppConstants.Username, username.text.toString())
                             editor.putString(AppConstants.Password, password.text.toString())
@@ -127,23 +124,5 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-         private fun rememberme() {
 
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor =  sharedPreferences.edit()
-
-        if(checkbox1.isChecked)
-        {
-            editor.putString(AppConstants.Username,username.text.toString())
-            editor.putString(AppConstants.Password,password.text.toString())
-        }
-        else
-        {
-            editor.putString(AppConstants.Username,null)
-            editor.putString(AppConstants.Password,null)
-        }
-
-        editor.apply()
-        editor.commit()
-    }
 }

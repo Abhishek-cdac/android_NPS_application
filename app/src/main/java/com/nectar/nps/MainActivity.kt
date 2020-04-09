@@ -92,40 +92,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-          /*  R.id.dashboard -> {
-                val fragment = DashboardFragment()
-                val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.setCustomAnimations(
-                    android.R.anim.fade_in,
-                    android.R.anim.fade_out
-                )
-                title="DashBoard"
-                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG)
-                fragmentTransaction.commitAllowingStateLoss()
-            }*/
+
             R.id.live_alarm -> {
-               /* val fragment = LiveAlarmFragment()
-                val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.setCustomAnimations(
-                    android.R.anim.fade_in,
-                    android.R.anim.fade_out
-                )
-                title="Live Alarm"
-                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG)
-                fragmentTransaction.commitAllowingStateLoss()*/
+
 
                 startActivity(Intent(applicationContext,LiveAlarmFragment::class.java))
             }
             R.id.live_kpi -> {
-               /* val fragment = LiveKPIFragment()
-                val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.setCustomAnimations(
-                    android.R.anim.fade_in,
-                    android.R.anim.fade_out
-                )
-                title="Live KPI"
-                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG)
-                fragmentTransaction.commitAllowingStateLoss()*/
+
 
                 startActivity(Intent(applicationContext,LiveKPIFragment::class.java))
             }

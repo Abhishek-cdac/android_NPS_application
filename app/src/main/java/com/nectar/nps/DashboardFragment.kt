@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
-import com.nectar.nps.Adapter.Alarmtype_Adapter
 import com.nectar.nps.Adapter.Dashboard_Adapter
 import kotlinx.android.synthetic.main.alarm_details_layout.view.*
 
@@ -26,7 +25,9 @@ class DashboardFragment : Fragment() {
                 it,
                 faqsView.tabLayout!!.tabCount
             )
+
         }
+
         faqsView.viewPager!!.adapter = adapter
 
         faqsView.viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(faqsView.tabLayout))

@@ -36,9 +36,9 @@ public interface RetroAPIInterface {
 
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @GET("http://nps.nectarinfotel.com:8070/api/Alarm/AlarmsLiveDashboardData")
+    @GET("http://nps.nectarinfotel.com:8070/api/Alarm/GetAlarmCountWithPerceivedSeverity")
+  //  @GET("http://nps.nectarinfotel.com:8070/api/Alarm/AlarmsLiveDashboardData")
     Call<JsonArray> callAlarmCOuntAPI(@Header("Authorization") String auth);
-
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("http://nps.nectarinfotel.com:8070/api/Alarm/GetAlarmsWithDownHr")
