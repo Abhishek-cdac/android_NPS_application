@@ -2,7 +2,9 @@ package com.nectar.nps.retrofit;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.nectar.nps.AlarmDashboardFragment;
 import com.nectar.nps.LoginActivity;
+import com.nectar.nps.data.AlarmDashboard;
 import com.nectarinfotel.utils.AppConstants;
 import okhttp3.ResponseBody;
 import org.json.JSONObject;
@@ -16,6 +18,7 @@ public interface RetroAPIInterface {
 
 
     @FormUrlEncoded
+
     @POST("http://nps.nectarinfotel.com:8070/Token")
     Call<JsonObject> login(@FieldMap Map<String, String> options);
 
@@ -63,9 +66,9 @@ public interface RetroAPIInterface {
     @FormUrlEncoded
     @Headers({ "Content-Type: application/x-www-form-urlencoded;charset=UTF-8"})
     @POST("http://nps.nectarinfotel.com:8070/api/KPI/GetAllKPIData?ts=1583139158173")
-     // Call<JsonObject> calllivekpiAPI(@Body String body,@Header("Authorization") String auth);
-   // Call<JsonObject> calllivekpiAPI(@Header("Authorization") String auth,@Query("FromTime") String FromTime,@Query("KPIDate") String KPIDate,@Query("ToTime") String ToTime);
     Call<JsonObject> calllivekpiAPI(@Header("Authorization") String auth,@FieldMap Map<String, String> options);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("http://nps.nectarinfotel.com:8070/api/Alarm/GetAlarmByElementWithPriorPerceivedSeverity?")
+    Call<JsonArray> callAlarmDatatAPI(@Header("Authorization") String auth,@Query("ElementName") String ElementName);
 }
-//https://nt3.nectarinfotel.com/webservices

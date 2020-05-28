@@ -27,12 +27,12 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".AlarmDetialActivity"/>
-        <activity android:name=".LiveAlarmDetialsActivity"/>
         <activity android:name=".LiveAlarmFragment"/>
         <activity android:name=".LiveKPIFragment"/>
         <activity android:name=".MajorAlarmDetialActivity"/>
         <activity android:name=".MinarAlarmDetialActivity"/>
         <activity android:name=".ClearedlAlarmDetialActivity"/>
+        <activity android:name=".DashboardAlarmList"/>
     </application>
 
 </manifest>

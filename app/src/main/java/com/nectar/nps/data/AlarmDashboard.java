@@ -16,6 +16,7 @@ public class AlarmDashboard {
     String SiteDetailID;
     String SiteDetailName;
     String TotalAlarm;
+    String PerceivedSeverity;
 
     public String getSiteDetailName() {
         return SiteDetailName;
@@ -135,5 +136,13 @@ public class AlarmDashboard {
 
     public void setSiteName(String siteName) {
         SiteName = siteName;
+    }
+
+    public String getPerceivedSeverity() {
+        return PerceivedSeverity;
+    }
+
+    public void setPerceivedSeverity(String perceivedSeverity) {
+        PerceivedSeverity = perceivedSeverity;
     }
 }

@@ -3,13 +3,29 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical">
+    <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+        <TextView
+                android:id="@+id/datetime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@color/grey"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentRight="true"
+                android:textStyle="bold"
+                android:text="Datetime"/>
     <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:textStyle="bold"
-            android:text="Alarm"/>
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/datetime"
+            android:text="Alarm Up-Down Chart"/>
+    </RelativeLayout>
     <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -22,7 +38,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="@dimen/_5sdp"
             androidPlot.graphWidget.paddingBottom="100dp"
-            android:layout_height="200dp" />
+            android:layout_height="280dp" />
 
     <ProgressBar
             android:id="@+id/loading"
@@ -116,8 +132,6 @@
             android:layout_height="@dimen/_300sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_50sdp"
             android:layout_centerHorizontal="true"
             android:visibility="visible" />
 

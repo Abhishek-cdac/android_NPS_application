@@ -35,7 +35,6 @@ class LiveKPIFragment : AppCompatActivity(), AdapterView.OnItemSelectedListener 
     lateinit var faqsView: View
     var isdialog: Boolean? =false
 
-
     private fun getlivekpilist(KPIDate: String, FromTime: String, ToTime: String) {
 
         var hashMap : HashMap<String, String>

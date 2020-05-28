@@ -18,11 +18,11 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <ImageView
                     android:layout_height="@dimen/_30sdp"
                     android:layout_width="@dimen/_80sdp"
                     android:visibility="visible"
-                    android:layout_centerInParent="true"
                     android:background="@drawable/logo"
                     android:layout_gravity="right"
                     android:layout_marginRight="@dimen/_10sdp"
@@ -30,8 +30,8 @@
             <RelativeLayout android:id="@+id/alarma_details"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_gravity="right"
-                            android:visibility="gone"
+            android:layout_gravity="left"
+                    android:visibility="gone"
             android:layout_marginRight="@dimen/_10sdp"
            >
                 <TextView

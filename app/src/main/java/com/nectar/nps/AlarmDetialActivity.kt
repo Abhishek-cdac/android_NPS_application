@@ -133,6 +133,7 @@ class AlarmDetialActivity:AppCompatActivity() {
                     Toast.makeText(applicationContext, "" +
                             " records found", Toast.LENGTH_SHORT).show()
                 }
+                Log.d("ddfgf", "criticalalarm "+alarm.size)
             }
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
                 progressbar_alarm.visibility=View.GONE
